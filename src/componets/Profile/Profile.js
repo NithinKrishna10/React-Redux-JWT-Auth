@@ -6,6 +6,7 @@ import axios from '../../utils/axios';
 import './Profile.css';
 import Swal from  "sweetalert2";
 
+import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 
 import Cookies from 'js-cookie';
 import { userAction } from '../../redux/usernameSlice';
@@ -27,7 +28,7 @@ function Profile() {
     useEffect(() => {
         const token = Cookies.get('jwt');
         if (!token) {
-            navigate('/');
+            navigate('/login');
 
         } else {
             const body = JSON.stringify({ token });
@@ -92,7 +93,7 @@ function Profile() {
             .then((res) => {
                 console.log(res.data,'llllllllllll');
                 console.log(res.data.image,'kkkkkkkkkkkkkkkkkk');
-                dispatch(userImageAction.setUserImage('localhost:8000'+res.data.image))
+                dispatch(userImageAction.setUserImage('http://127.0.0.1:8000'+res.data.image))
             }).catch((err) => {
                 console.log(err);
             })
@@ -102,44 +103,78 @@ function Profile() {
     return (
 
 
-        <div>
-            <div class="container rounded bg- mt-5 mb-5 profilepage">
-                <div class="row">
-                    <div class="col-md-4 border-right">
-                        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                            <img class="rounded-circle mt-4 mb-4" width={150} src={'http://localhost:8000'+Image} alt="profile photo" />
+        // <div>
+        //     <div class="container rounded bg- mt-5 mb-5 profilepage">
+        //         <div class="row">
+        //             <div class="col-md-4 border-right">
+        //                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+        //                     <img class="rounded-circle mt-4 mb-4" width={150} src={'http://localhost:8000'+Image} alt="profile photo" />
                             
-                            <span class="text-black-50"></span>
-                            <span>
-                                <button onClick={userImage} type="button" class="btn btn-primary" >
-                                    Update Image
-                                </button>
+        //                     <span class="text-black-50"></span>
+        //                     <span>
+        //                         <button onClick={userImage} type="button" class="btn btn-primary" >
+        //                             Update Image
+        //                         </button>
 
 
-                                </span></div>
-                    </div>
-                    <div class="col-md-8 border-right">
-                        <div class="p-3 py-5">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4 class="text-right">Profile Settings</h4>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md-6"><label class="labels">Name :</label> {name}</div>
+        //                         </span></div>
+        //             </div>
+        //             <div class="col-md-8 border-right">
+        //                 <div class="p-3 py-5">
+        //                     <div class="d-flex justify-content-between align-items-center mb-3">
+        //                         <h4 class="text-right">Profile Settings</h4>
+        //                     </div>
+        //                     <div class="row mt-2">
+        //                         <div class="col-md-6"><label class="labels">Name :</label> {name}</div>
 
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-6"><label class="labels">Email :</label> {email}</div>
+        //                     </div>
+        //                     <div class="row mt-3">
+        //                         <div class="col-md-6"><label class="labels">Email :</label> {email}</div>
 
-                            </div>
+        //                     </div>
                            
-                        </div>
-                    </div>
-                    <div class="col-md-4">
+        //                 </div>
+        //             </div>
+        //             <div class="col-md-4">
 
-                    </div>
-                </div>
-            </div>
+        //             </div>
+        //         </div>
+        //     </div>
+        // </div>
+
+<div class="container profile-container mt-5 mb-5">
+  <div class="row">
+    <div class="col-md-4 border-right">
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+        <img class="rounded-circle profile-img" width="150" src={'http://127.0.0.1:8000/'+Image} alt="Profile Photo"/>
+        <div class="mt-4">
+          <button class="btn btn-primary" type="button" onClick={userImage} >Update Image</button>
         </div>
+      </div>
+    </div>
+    <div class="col-md-8 border-right">
+      <div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="text-right">Profile Settings</h4>
+        </div>
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label class="labels">Name :</label>
+            <span class="profile-text">{name}</span>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <label class="labels">Email :</label>
+            <span class="profile-text">{email}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
 
     )
 }

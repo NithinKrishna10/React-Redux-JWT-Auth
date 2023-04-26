@@ -1,11 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./cart";
-import usernameReducer from "./usernameReducer";
 import { userImageReducers } from './userImageSlice';
+import {userReducers} from "./usernameSlice";
+
+
+
 export const store = configureStore({
    reducer: {
-      username: usernameReducer,
+      username: userReducers,
       cart: cartReducer,
       userImage : userImageReducers,
    },
 });
+
+

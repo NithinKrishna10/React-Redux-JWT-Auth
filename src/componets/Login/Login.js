@@ -9,6 +9,8 @@ import Swal from "sweetalert2";
 import { useDispatch } from 'react-redux';
 import jwt_decode from "jwt-decode";
 import Cookies from 'js-cookie';
+import { userImageAction } from '../../redux/userImageSlice';
+
 
 function Login() {
 
@@ -37,8 +39,8 @@ function Login() {
         axios.post(loginPost,body,{
           headers : {"Content-Type": "application/json"},
         }).then((response)=>{
-          
-            if (response.data.status ==="Wrong password" || response.data.status === "Email is not found"){
+          console.log(response.data.status);
+            if (response.data.status ==="Wrong password" || response.data.status === "Email is not found" || response.data.status === "no user" ){
               Swal.fire({
                 position: "center",
                 icon: "error",
@@ -47,6 +49,7 @@ function Login() {
                 timer: 1500,
               });
             }else{
+              console.log(response.data.user_jwt);
               Cookies.set("jwt",String(response.data.user_jwt))
               Cookies.set("id",String(response.data.id))
               Swal.fire({
@@ -59,7 +62,7 @@ function Login() {
             if (response.status === 200){
               console.log(response.data);
               dispatch(userAction.setUsername(response.data.payload.email));
-            //   dispatch(userImageAction.setUserImage(response.data.payload.image));
+              dispatch(userImageAction.setUserImage(response.data.payload.image));
               navigate("/")
             }
             }
@@ -89,6 +92,9 @@ function Login() {
         />
   
   <button type="button" onClick={handleLogin}>Login</button>
+  <h1>Dont have an accout    <Link className='heaader' to="/signup"> 
+        Register
+    </Link></h1>
       </div>
     );
 }

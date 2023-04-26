@@ -18,7 +18,7 @@ function UpdateUser(){
   useEffect(()=>{
     axios.get(`${adminEditUser}/${params.id}`).then((response)=>{
       console.log(response.data.id,'kkkkkkkkkkkk')
-      setUserName(response.data.name)
+      setUserName(response.data.full_name)
       setEmail(response.data.email)
     }).catch((error)=>{
       alert(error)

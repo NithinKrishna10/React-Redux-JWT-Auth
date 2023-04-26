@@ -8,24 +8,22 @@ import { userSignUp } from '../../utils/Constants';
 
 function AdminAddUser(){
   const navigate = useNavigate();
-  const [username,setUserName] = useState('');
+  const [full_name,setUserName] = useState('');
   const [email,setEmail] = useState('');
-  const [phone,setPhone] = useState('');
   const [password,setPassword] = useState('');
 
   const handleSubmit=(e)=>{
     e.preventDefault()
     const body =JSON.stringify({
-      username,
+      full_name,
       email,
-      password,
-      phone
+      password
     });
     axios.post(userSignUp,body,{
       headers:{"Content-Type": "application/json"},
     }).then((response)=>{
       console.log(response.status)
-      if (response.status === 200){
+      if (response.status === 201){
         navigate("/userlist")
       } else{
         Swal.fire({
@@ -53,11 +51,11 @@ function AdminAddUser(){
       <form className='updateForm' onSubmit={(e)=>handleSubmit(e)} >
         <div className="container1">
           <h1>ADD USER</h1>
-          <label for="username"><b>Username</b></label>
+          <label for="username"><b>Fullname</b></label>
           <input
             type="text"
             placeholder="Enter username"
-            value={username}
+            value={full_name}
             onChange={(e) => setUserName(e.target.value)}
             id="username"
             required=""
@@ -72,15 +70,7 @@ function AdminAddUser(){
             id="email"
             required=""
           />
-          <label for="email"><b>Phone</b></label>
-          <input
-            type="text"
-            placeholder="Enter Phone Number"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            id="phone"
-            required=""
-          />
+          
           <label for="email"><b>Password</b></label>
           <input
             type="password"

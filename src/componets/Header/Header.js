@@ -2,24 +2,44 @@ import React from 'react'
 import './Header.css'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
+import axios from '../../utils/axios';
+import { userAction } from '../../redux/usernameSlice';
+import { useDispatch } from "react-redux";
+import {Link} from "react-router-dom";
+
+
 function Header() {
 
-   const {cartList = []} = useSelector((state)=> state.cart)
 
+   const username1 = useSelector((state)=>state.username.value);
+   console.log(username1,'ooooooooiii')
+ 
+   const {cartList = []} = useSelector((state)=> state.cart)
+   const dispatch = useDispatch();
    // cartList = [ {count} {count} {count} ,total count ]
 
    const totalCartCount = cartList.reduce((acc,value) => (acc += value.count),0);
    const navigate = useNavigate()
    
+   const handleLogut=()=>{
+      return dispatch(userAction.logOut());
+    };
+
   return (
     <header>
     <div className="container">
-       <h1>Nithin Krishna</h1>
+
+       <h1 className='heaader'>
+    <Link className='heaader' to="/"> 
+         {username1}
+    </Link>
+         </h1>
        <button  onClick={() => {
               navigate("/profile");
             }}>
               Profile
           </button>
+          <button onClick={handleLogut} type="">logOut</button>
        <div className="right-section">
           <div className="cart-count-header">{totalCartCount}</div>
           <svg width="32" height="32" viewBox="0 0 16 16" cursor="pointer">

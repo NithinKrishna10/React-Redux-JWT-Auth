@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 
 const name = 'username'
@@ -17,7 +17,7 @@ const slice = createSlice({
 function createInitialState(){
   return {
     value: null
-  }
+  }      
 }
 
 function createReducers(){
@@ -27,6 +27,7 @@ function createReducers(){
 
   function setUsername(state, action){
     state.value = action.payload;
+    console.log(action.payload,"hain");
   }
 }
 

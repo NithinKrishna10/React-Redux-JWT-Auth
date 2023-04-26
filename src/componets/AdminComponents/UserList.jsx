@@ -1,4 +1,4 @@
-import React ,{ useEffect, useState } from "react";
+import React ,{ Fragment, useEffect, useState } from "react";
 import './UserList.css';
 import './users.css';
 import Footer from  './Footer/AdminFooter';
@@ -19,11 +19,12 @@ function UserList(){
   useEffect (()=>{
     const token = Cookies.get('admin_jwt')
 		if (token){
+      console.log('i am in the user list section',token);
 			navigate('/userlist')
       getUserList();
 		}
     else{
-      navigate('/adminLogin')
+      navigate('/adminlogin')
     }
   },[navigate])
 
@@ -59,7 +60,10 @@ function UserList(){
   }
 
   function handleFilter(e) {
+
+    
     const newData = users.filter((user) => {
+   
       return user.full_name.toLowerCase().includes(e.target.value.toLowerCase());
     });
     setRecords(newData);
@@ -67,12 +71,13 @@ function UserList(){
 
 
   return(
+    <Fragment>
     <div className="userlist">
       <AdminHeader />
 
       <br />
-      <br />
-      <button onClick={() => {console.log(users);}}>dfsdfsdfd</button>
+      {/* <br /> */}
+      {/* <button onClick={() => {console.log(users);}}>dfsdfsdfd</button> */}
     
       <div className="searchInput" >
 
@@ -80,8 +85,8 @@ function UserList(){
 </div>
       <button className="addButtonAdmin" onClick={()=>navigate(`/adminAddUser`)}>Add</button>
       <br />
-      <br />
-      <br />
+ 
+      <button className="addButtonAdmin" onClick={()=>navigate(`/adminAddUser`)}>Add</button>
         <table id="customers">
         <tr>
             <th className="w-5">No</th>
@@ -97,10 +102,10 @@ function UserList(){
           <td>{user.full_name}</td>
           <td>{user.email}</td>
           <td>
-            <button className='editt' onClick={()=>navigate(`/updateUser/${user.id}`)}>Edit</button>
+            <button  onClick={()=>navigate(`/updateUser/${user.id}`)}>Edit</button>
           </td>
           <td> 
-            <button className='deletee' onClick={()=>deleteUser(user.id)}>Delete</button>
+            <button  onClick={()=>deleteUser(user.id)}>Delete</button>
           </td>
           </tr>
 
@@ -110,10 +115,10 @@ function UserList(){
           <td>{user.full_name}</td>
           <td>{user.email}</td>
           <td>
-            <button className='editt' onClick={()=>navigate(`/updateUser/${user.id}`)}>Edit</button>
+            <button  onClick={()=>navigate(`/updateUser/${user.id}`)}>Edit</button>
           </td>
           <td> 
-            <button className='deletee' onClick={()=>deleteUser(user.id)}>Delete</button>
+            <button  onClick={()=>deleteUser(user.id)}>Delete</button>
           </td>
           </tr>
 
@@ -121,8 +126,9 @@ function UserList(){
       }
 
         </table>
-        <Footer />
     </div>
+        <Footer />
+    </Fragment>
   )
 }
 

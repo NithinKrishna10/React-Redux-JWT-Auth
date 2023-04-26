@@ -39,7 +39,8 @@ function AdminLogin(){
         axios.post(adminLogin,body,{
             headers:{"Content-Type":"application/json"},
         }).then((response)=>{
-            if (response.data.status === 'Wrong Password' || response.data.status === "Email not found"){
+            console.log(response);
+            if (response.data.status === 'Wrong Password' || response.data.status === "Email or Password is Wrong" || response.data.status === "not admin"){
                 Swal.fire({
                     position: "center",
                     icon: "error",

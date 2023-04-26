@@ -2,7 +2,7 @@ import React from 'react';
 import Swal from 'sweetalert2';
 import {useNavigate} from 'react-router-dom';
 import Cookies from 'js-cookie';
-
+import {Link} from "react-router-dom";
 
 function AdminHeader(){
   const navigate=useNavigate()
@@ -58,7 +58,10 @@ function AdminHeader(){
 
     <header>
     <div className="container">
+       <Link className='heaader' to="/userlist"> 
        <h1>Nithin Krishna</h1>
+         {/* {username1} */}
+    </Link>
 
        <div className="right-section">
           <div className="cart-count-header"></div>
@@ -68,7 +71,10 @@ function AdminHeader(){
                 fill="#fff"
              ></path>
           </svg>
-          <p onClick={logout}>Logout</p>
+          {/* <p onClick={logout}>Logout</p> */}
+          <form class="d-flex" >
+             <button class="adminLogoutBtn" onClick={logout}>Logout</button>
+           </form>
        </div>
       
     </div>

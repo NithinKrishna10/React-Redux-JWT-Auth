@@ -29,7 +29,7 @@ function Signup() {
           console.log(response.status)
           console.log(response.data);
           if (response.status === 201) {
-            navigate("/");
+            navigate("/login");
           } else {
             Swal.fire({
               position: "center",
@@ -81,7 +81,6 @@ function Signup() {
         <button type="submit">Sign up</button>
       </form>
     </div>
-
   )
 }
 
