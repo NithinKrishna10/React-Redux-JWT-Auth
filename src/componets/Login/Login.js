@@ -72,30 +72,54 @@ function Login() {
   
   
     return (
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
+  //     <div>
+  //       <label htmlFor="email">Email:</label>
+  //       <input
+  //         type="email"
+  //         id="email"
+  //         value={email}
+  //         onChange={(event) => setEmail(event.target.value)}
+  //         required
+  //       />
+  
+  //       <label htmlFor="password">Password:</label>
+  //       <input
+  //         type="password"
+  //         id="password"
+  //         value={password}
+  //         onChange={(event) => setPassword(event.target.value)}
+  //         required
+  //       />
+  
+  // <button type="button" onClick={handleLogin}>Login</button>
+  // <h1>Dont have an accout    <Link className='heaader' to="/signup"> 
+  //       Register
+  //   </Link></h1>
+  //     </div>
+<div>
+  <h1>Welcome To Login Page</h1>
+  
+  <form class="login-form">
+  <label for="email">Email:</label>
+  <input
           type="email"
           id="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           required
         />
-  
-        <label htmlFor="password">Password:</label>
-        <input
+  <label for="password">Password:</label>
+  <input
           type="password"
           id="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           required
         />
-  
-  <button type="button" onClick={handleLogin}>Login</button>
-  <h1>Dont have an accout    <Link className='heaader' to="/signup"> 
-        Register
-    </Link></h1>
-      </div>
+ <button type="button" onClick={handleLogin}>Login</button>
+  </form>
+</div>
+
     );
 }
 

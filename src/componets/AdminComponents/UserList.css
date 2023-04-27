@@ -23,8 +23,9 @@ color: rgb(255, 255, 255);
 }
 
 .searchInput{
-  width: 6rem;
-  margin-left: 180px;
+  width: 14rem;
+  margin-left: 150px;
   position: relative;
   display: flex;
+  margin-top: 10px;
 }

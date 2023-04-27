@@ -4,7 +4,7 @@
   margin:100px auto; 
   padding: 40px;
   border: 1px solid #ececec;
-  background: #b56767;
+  background: #999191;
 }
 
 h1{
@@ -37,6 +37,7 @@ input.input-box{
   border:0px; 
   outline:none;
 }
+
 
 input.input-box:focus + p{
   color:#0c8bf9; 
