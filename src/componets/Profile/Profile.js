@@ -6,7 +6,6 @@ import axios from '../../utils/axios';
 import './Profile.css';
 import Swal from  "sweetalert2";
 
-import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 
 import Cookies from 'js-cookie';
 import { userAction } from '../../redux/usernameSlice';
@@ -94,6 +93,7 @@ function Profile() {
                 console.log(res.data,'llllllllllll');
                 console.log(res.data.image,'kkkkkkkkkkkkkkkkkk');
                 dispatch(userImageAction.setUserImage('http://127.0.0.1:8000'+res.data.image))
+                navigate('/profile')
             }).catch((err) => {
                 console.log(err);
             })
@@ -174,6 +174,9 @@ function Profile() {
     <div class="col-md-4"></div>
   </div>
 </div>
+
+
+
 
 
     )

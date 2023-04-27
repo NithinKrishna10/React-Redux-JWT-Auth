@@ -34,12 +34,12 @@ function Header() {
          {username1}
     </Link>
          </h1>
-       <button  onClick={() => {
-              navigate("/profile");
-            }}>
-              Profile
-          </button>
-          <button onClick={handleLogut} type="">logOut</button>
+         <button  onClick={() => {navigate("/profile");}}> Profile</button> 
+       { username1 ?  
+       <button onClick={handleLogut} type="">logOut</button>
+       :
+       <button  onClick={() => {navigate("/login");}}> Login</button>
+          }
        <div className="right-section">
           <div className="cart-count-header">{totalCartCount}</div>
           <svg width="32" height="32" viewBox="0 0 16 16" cursor="pointer">
